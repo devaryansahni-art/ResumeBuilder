@@ -1,0 +1,68 @@
+@media print {
+  /* Set standard paper size & page margins */
+  @page {
+    size: A4 portrait;
+    margin: 0mm;
+  }
+
+  /* Reset body & root elements for pure white background */
+  html, body, #root {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Hide EVERYTHING on the page by default in print view */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show ONLY the printable resume container and its children */
+  #printable-resume,
+  #printable-resume * {
+    visibility: visible !important;
+  }
+
+  /* Target printable resume canvas and lock it to top-left of page */
+  #printable-resume {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    transform: none !important;
+  }
+
+  /* Hide any potential dialogs, toolbars, headers explicitly */
+  header,
+  nav,
+  button,
+  .no-print,
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  /* Page break optimization */
+  .break-inside-avoid,
+  .resume-section,
+  li,
+  p {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Force accurate color rendering */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

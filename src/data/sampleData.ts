@@ -1,0 +1,466 @@
+import { ResumeData } from '../types/resume';
+
+export const SAMPLE_RESUME_SOFTWARE_ENGINEER: ResumeData = {
+  personalInfo: {
+    fullName: 'Alex Vance',
+    jobTitle: 'Senior Full Stack Engineer',
+    email: 'alex.vance@example.com',
+    phone: '+1 (555) 234-5678',
+    location: 'San Francisco, CA',
+    website: 'https://alexvance.dev',
+    linkedIn: 'linkedin.com/in/alexvance-dev',
+    github: 'github.com/alexvance',
+    photoUrl: '',
+    showPhoto: false,
+  },
+  summary:
+    'Passionate Full Stack Engineer with 7+ years of experience crafting high-throughput web applications, microservice architectures, and modern cloud infrastructures. Proven track record of scaling user bases from 10k to 1M+ DAU, optimizing database queries, and leading cross-functional engineering teams in agile environments.',
+  workExperiences: [
+    {
+      id: 'exp-1',
+      jobTitle: 'Senior Software Engineer',
+      company: 'Apex Cloud Systems',
+      location: 'San Francisco, CA',
+      startDate: '2022-03',
+      endDate: 'Present',
+      isCurrent: true,
+      bullets: [
+        'Spearheaded the redesign of the core payment processing service in Node.js and TypeScript, reducing checkout latency by 42% and processing $12M+ monthly throughput.',
+        'Architected real-time WebSocket notifications engine serving 250,000 active concurrent connections with 99.99% uptime SLA.',
+        'Mentored 5 junior developers, introduced comprehensive unit/integration testing protocols (Jest & Playwright), elevating code coverage from 55% to 92%.',
+      ],
+    },
+    {
+      id: 'exp-2',
+      jobTitle: 'Full Stack Developer',
+      company: 'Nexus Digital Labs',
+      location: 'Austin, TX',
+      startDate: '2019-06',
+      endDate: '2022-02',
+      isCurrent: false,
+      bullets: [
+        'Built dynamic React/GraphQL customer dashboard handling 50k+ daily operational analytics requests.',
+        'Migrated monolithic Django application to containerized AWS EKS microservices, slashing infrastructure deployment costs by $35,000 annually.',
+        'Implemented Redis caching layer for heavy reporting queries, dropping server response times from 2.4s to 120ms.',
+      ],
+    },
+    {
+      id: 'exp-3',
+      jobTitle: 'Frontend Engineer Intern',
+      company: 'Vanguard Media Group',
+      location: 'Boston, MA',
+      startDate: '2018-05',
+      endDate: '2019-05',
+      isCurrent: false,
+      bullets: [
+        'Developed interactive analytics widgets using Vue.js and D3.js for executive reporting dashboards.',
+        'Optimized web asset bundling and image delivery pipelines, improving Google Lighthouse performance score from 68 to 98.',
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 'edu-1',
+      degree: 'B.S. in Computer Science & Engineering',
+      institution: 'University of California, Berkeley',
+      location: 'Berkeley, CA',
+      startDate: '2014-08',
+      endDate: '2018-05',
+      isCurrent: false,
+      gpa: '3.85 / 4.0',
+      highlights: 'Dean’s Honors List (6 semesters), President of Hackathon Club, Teaching Assistant for Data Structures (CS61B).',
+    },
+  ],
+  skillCategories: [
+    {
+      id: 'skill-1',
+      category: 'Languages & Core',
+      items: ['TypeScript', 'JavaScript (ESNext)', 'Python', 'Go', 'HTML5/CSS3', 'SQL'],
+    },
+    {
+      id: 'skill-2',
+      category: 'Frameworks & Libraries',
+      items: ['React', 'Next.js', 'Node.js', 'Express', 'TailwindCSS', 'GraphQL', 'Redux Toolkit'],
+    },
+    {
+      id: 'skill-3',
+      category: 'Cloud & Infrastructure',
+      items: ['AWS (Lambda, S3, ECS)', 'Docker', 'Kubernetes', 'PostgreSQL', 'Redis', 'CI/CD (GitHub Actions)'],
+    },
+  ],
+  projects: [
+    {
+      id: 'proj-1',
+      name: 'StreamPulse — Real-Time Metrics Pipeline',
+      description:
+        'Open-source developer dashboard for monitoring distributed web worker metrics with WebSockets and Rust web servers.',
+      technologies: ['Rust', 'React', 'TimescaleDB', 'Docker'],
+      link: 'github.com/alexvance/streampulse',
+      startDate: '2023-01',
+      endDate: '2023-08',
+    },
+    {
+      id: 'proj-2',
+      name: 'Markdown2PDF CLI Tool',
+      description:
+        'Fast command-line tool converting GitHub Flavored Markdown to print-ready PDF invoices and documentation.',
+      technologies: ['Node.js', 'Puppeteer', 'CSS Grid'],
+      link: 'github.com/alexvance/md2pdf',
+      startDate: '2022-04',
+      endDate: '2022-09',
+    },
+  ],
+  certifications: [
+    {
+      id: 'cert-1',
+      name: 'AWS Certified Solutions Architect – Associate',
+      issuer: 'Amazon Web Services',
+      date: '2023-06',
+      link: 'aws.amazon.com/verification',
+    },
+    {
+      id: 'cert-2',
+      name: 'Certified Kubernetes Application Developer (CKAD)',
+      issuer: 'Linux Foundation',
+      date: '2022-11',
+      link: '',
+    },
+  ],
+  languages: [
+    { id: 'lang-1', language: 'English', proficiency: 'Native / Bilingual' },
+    { id: 'lang-2', language: 'Spanish', proficiency: 'Professional Working' },
+  ],
+  customSections: [],
+  sections: [
+    { id: 'personal', name: 'Personal Information', enabled: true },
+    { id: 'summary', name: 'Professional Summary', enabled: true },
+    { id: 'experience', name: 'Work Experience', enabled: true },
+    { id: 'skills', name: 'Skills & Technologies', enabled: true },
+    { id: 'projects', name: 'Featured Projects', enabled: true },
+    { id: 'education', name: 'Education', enabled: true },
+    { id: 'certifications', name: 'Certifications', enabled: true },
+    { id: 'languages', name: 'Languages', enabled: true },
+  ],
+  theme: {
+    template: 'minimal',
+    accentColor: '#2563eb',
+    fontFamily: 'inter',
+    fontSize: 'md',
+    spacing: 'normal',
+  },
+};
+
+export const SAMPLE_RESUME_PRODUCT_MANAGER: ResumeData = {
+  personalInfo: {
+    fullName: 'Elena Rostova',
+    jobTitle: 'Senior Product Manager',
+    email: 'elena.rostova@example.com',
+    phone: '+1 (555) 890-1234',
+    location: 'New York, NY',
+    website: 'https://elenarostova.com',
+    linkedIn: 'linkedin.com/in/elena-rostova-pm',
+    github: '',
+    photoUrl: '',
+    showPhoto: false,
+  },
+  summary:
+    'Data-driven Product Manager with 6+ years leading cross-functional teams in SaaS, Fintech, and Growth engineering. Skilled in roadmap execution, A/B testing frameworks, customer discovery, and driving product-led growth initiatives that increased net retention by 28%.',
+  workExperiences: [
+    {
+      id: 'exp-pm-1',
+      jobTitle: 'Senior Product Manager',
+      company: 'FinFlow SaaS Solutions',
+      location: 'New York, NY',
+      startDate: '2021-09',
+      endDate: 'Present',
+      isCurrent: true,
+      bullets: [
+        'Owned core onboarding funnel strategy, driving a 34% improvement in 30-day user activation through personalized onboarding wizard experiments.',
+        'Led a team of 9 engineers and 2 UX designers using Agile/Scrum methodologies to launch self-serve enterprise billing.',
+        'Analyzed Mixpanel and Amplitude telemetry data to identify customer friction points, cutting churn rate from 4.2% to 2.1%.',
+      ],
+    },
+    {
+      id: 'exp-pm-2',
+      jobTitle: 'Product Manager',
+      company: 'Verve Commerce',
+      location: 'Chicago, IL',
+      startDate: '2018-11',
+      endDate: '2021-08',
+      isCurrent: false,
+      bullets: [
+        'Launched AI-powered recommendation widget that generated $4.8M in incremental annual gross merchandise value.',
+        'Conducted over 100 customer discovery interviews to validate user stories and define MVP specifications for international expansion.',
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 'edu-pm-1',
+      degree: 'M.B.A. in Product Management & Technology Strategy',
+      institution: 'NYU Stern School of Business',
+      location: 'New York, NY',
+      startDate: '2016-09',
+      endDate: '2018-05',
+      isCurrent: false,
+      gpa: '3.9 / 4.0',
+      highlights: 'President of Tech & Business Association, Beta Gamma Sigma Honor Society.',
+    },
+  ],
+  skillCategories: [
+    {
+      id: 'skill-pm-1',
+      category: 'Product Strategy & Analytics',
+      items: ['Product Roadmap', 'A/B Testing', 'Mixpanel', 'Amplitude', 'Jira/Confluence', 'SQL', 'User Research'],
+    },
+    {
+      id: 'skill-pm-2',
+      category: 'Methodologies & Soft Skills',
+      items: ['Agile / Scrum', 'Design Thinking', 'Cross-Functional Leadership', 'Stakeholder Management', 'GTM Strategy'],
+    },
+  ],
+  projects: [],
+  certifications: [
+    {
+      id: 'cert-pm-1',
+      name: 'Certified Scrum Product Owner (CSPO)',
+      issuer: 'Scrum Alliance',
+      date: '2020-04',
+      link: '',
+    },
+  ],
+  languages: [
+    { id: 'lang-pm-1', language: 'English', proficiency: 'Native' },
+    { id: 'lang-pm-2', language: 'French', proficiency: 'Fluent' },
+  ],
+  customSections: [],
+  sections: [
+    { id: 'personal', name: 'Personal Information', enabled: true },
+    { id: 'summary', name: 'Professional Summary', enabled: true },
+    { id: 'experience', name: 'Work Experience', enabled: true },
+    { id: 'education', name: 'Education', enabled: true },
+    { id: 'skills', name: 'Skills & Competencies', enabled: true },
+    { id: 'certifications', name: 'Certifications', enabled: true },
+    { id: 'languages', name: 'Languages', enabled: true },
+  ],
+  theme: {
+    template: 'modern',
+    accentColor: '#0d9488',
+    fontFamily: 'outfit',
+    fontSize: 'md',
+    spacing: 'normal',
+  },
+};
+
+export const SAMPLE_RESUME_CREATIVE: ResumeData = {
+  personalInfo: {
+    fullName: 'Maya Lin',
+    jobTitle: 'Lead Product & UX Designer',
+    email: 'maya.design@example.com',
+    phone: '+1 (555) 432-8765',
+    location: 'Seattle, WA',
+    website: 'https://mayalin.design',
+    linkedIn: 'linkedin.com/in/mayalin-design',
+    github: 'dribbble.com/mayalin',
+    photoUrl: '',
+    showPhoto: false,
+  },
+  summary:
+    'Human-centered Lead UX Designer with 8+ years designing intuitive digital products, design systems, and cross-platform web/mobile applications. Specializes in rapid prototyping, user research synthesis, and accessible UI interaction design.',
+  workExperiences: [
+    {
+      id: 'exp-cr-1',
+      jobTitle: 'Lead Product Designer',
+      company: 'Aura Studio & Labs',
+      location: 'Seattle, WA',
+      startDate: '2021-02',
+      endDate: 'Present',
+      isCurrent: true,
+      bullets: [
+        'Architected multi-brand Figma Design System adopted by 40+ designers and engineers, slashing design handoff revision cycles by 50%.',
+        'Spearheaded redesign of iOS mobile banking app, elevating App Store rating from 3.8 to 4.8 stars across 100k+ ratings.',
+        'Conducted usability sessions with 80+ participants, translating telemetry into high-converting UI patterns.',
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 'edu-cr-1',
+      degree: 'B.F.A. in Interaction Design & HCI',
+      institution: 'Rhode Island School of Design (RISD)',
+      location: 'Providence, RI',
+      startDate: '2013-09',
+      endDate: '2017-05',
+      isCurrent: false,
+      gpa: '3.9 / 4.0',
+      highlights: 'Highest Honors in Interaction Design Senior Thesis.',
+    },
+  ],
+  skillCategories: [
+    {
+      id: 'skill-cr-1',
+      category: 'Design & Prototyping',
+      items: ['Figma', 'Framer', 'Design Systems', 'User Research', 'Wireframing', 'Prototyping', 'Accessibility (WCAG)'],
+    },
+    {
+      id: 'skill-cr-2',
+      category: 'Tools & Code',
+      items: ['HTML5/CSS3', 'TailwindCSS', 'Principle', 'Adobe CC', 'Design Tokens'],
+    },
+  ],
+  projects: [
+    {
+      id: 'proj-cr-1',
+      name: 'Design System OS — Open Kit',
+      description: 'Comprehensive UI component framework for SaaS products.',
+      technologies: ['Figma', 'Design Tokens', 'Storybook'],
+      link: 'mayalin.design/ds-os',
+      startDate: '2023-01',
+      endDate: '2023-06',
+    },
+  ],
+  certifications: [],
+  languages: [
+    { id: 'lang-cr-1', language: 'English', proficiency: 'Native' },
+  ],
+  customSections: [],
+  sections: [
+    { id: 'personal', name: 'Personal Information', enabled: true },
+    { id: 'summary', name: 'Professional Summary', enabled: true },
+    { id: 'experience', name: 'Work Experience', enabled: true },
+    { id: 'skills', name: 'Skills & Tools', enabled: true },
+    { id: 'projects', name: 'Design Projects', enabled: true },
+    { id: 'education', name: 'Education', enabled: true },
+    { id: 'languages', name: 'Languages', enabled: true },
+  ],
+  theme: {
+    template: 'creative',
+    accentColor: '#9333ea',
+    fontFamily: 'outfit',
+    fontSize: 'md',
+    spacing: 'normal',
+  },
+};
+
+export const SAMPLE_RESUME_EXECUTIVE: ResumeData = {
+  personalInfo: {
+    fullName: 'Harrison Vance',
+    jobTitle: 'Chief Operating Officer & VP Finance',
+    email: 'h.vance@example.com',
+    phone: '+1 (555) 765-4321',
+    location: 'Boston, MA',
+    website: 'https://harrisonvance.com',
+    linkedIn: 'linkedin.com/in/harrisonvance',
+    github: '',
+    photoUrl: '',
+    showPhoto: false,
+  },
+  summary:
+    'Seasoned Operations & Finance Executive with 15+ years of strategic leadership across Fortune 500 technology firms and high-growth scale-ups. Expertise in corporate restructuring, M&A due diligence, annual P&L oversight ($150M+), and global organizational growth.',
+  workExperiences: [
+    {
+      id: 'exp-ex-1',
+      jobTitle: 'Chief Operating Officer (COO)',
+      company: 'Vanguard Enterprise Group',
+      location: 'Boston, MA',
+      startDate: '2019-01',
+      endDate: 'Present',
+      isCurrent: true,
+      bullets: [
+        'Managed global operations spanning 600+ personnel across 4 continents, driving EBITDA margin expansion by 18% over 3 years.',
+        'Structured $45M strategic acquisition of cloud analytics subsidiary, executing post-merger integration ahead of schedule.',
+        'Overhauled enterprise risk management and compliance frameworks, achieving zero regulatory audit findings.',
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 'edu-ex-1',
+      degree: 'M.B.A. in Finance & Executive Leadership',
+      institution: 'Harvard Business School',
+      location: 'Boston, MA',
+      startDate: '2006-09',
+      endDate: '2008-05',
+      isCurrent: false,
+      gpa: 'Baker Scholar',
+      highlights: 'Editor of Harvard Business Review Student Board.',
+    },
+  ],
+  skillCategories: [
+    {
+      id: 'skill-ex-1',
+      category: 'Executive Leadership',
+      items: ['P&L Management ($150M+)', 'M&A Due Diligence', 'Corporate Restructuring', 'Board Governance', 'GTM Execution'],
+    },
+  ],
+  projects: [],
+  certifications: [
+    {
+      id: 'cert-ex-1',
+      name: 'Chartered Financial Analyst (CFA)',
+      issuer: 'CFA Institute',
+      date: '2010-06',
+      link: '',
+    },
+  ],
+  languages: [
+    { id: 'lang-ex-1', language: 'English', proficiency: 'Native' },
+  ],
+  customSections: [],
+  sections: [
+    { id: 'personal', name: 'Personal Information', enabled: true },
+    { id: 'summary', name: 'Executive Summary', enabled: true },
+    { id: 'experience', name: 'Professional Experience', enabled: true },
+    { id: 'education', name: 'Education & Credentials', enabled: true },
+    { id: 'skills', name: 'Core Competencies', enabled: true },
+    { id: 'certifications', name: 'Certifications', enabled: true },
+  ],
+  theme: {
+    template: 'classic',
+    accentColor: '#d97706',
+    fontFamily: 'merriweather',
+    fontSize: 'md',
+    spacing: 'normal',
+  },
+};
+
+export const EMPTY_RESUME: ResumeData = {
+  personalInfo: {
+    fullName: '',
+    jobTitle: '',
+    email: '',
+    phone: '',
+    location: '',
+    website: '',
+    linkedIn: '',
+    github: '',
+    photoUrl: '',
+    showPhoto: false,
+  },
+  summary: '',
+  workExperiences: [],
+  education: [],
+  skillCategories: [],
+  projects: [],
+  certifications: [],
+  languages: [],
+  customSections: [],
+  sections: [
+    { id: 'personal', name: 'Personal Information', enabled: true },
+    { id: 'summary', name: 'Professional Summary', enabled: true },
+    { id: 'experience', name: 'Work Experience', enabled: true },
+    { id: 'skills', name: 'Skills', enabled: true },
+    { id: 'projects', name: 'Projects', enabled: true },
+    { id: 'education', name: 'Education', enabled: true },
+    { id: 'certifications', name: 'Certifications', enabled: true },
+    { id: 'languages', name: 'Languages', enabled: true },
+  ],
+  theme: {
+    template: 'minimal',
+    accentColor: '#2563eb',
+    fontFamily: 'inter',
+    fontSize: 'md',
+    spacing: 'normal',
+  },
+};
+
