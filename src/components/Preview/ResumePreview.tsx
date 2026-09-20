@@ -5,7 +5,15 @@ import { ModernSidebarTemplate } from './templates/ModernSidebarTemplate';
 import { ClassicTemplate } from './templates/ClassicTemplate';
 import { CompactTemplate } from './templates/CompactTemplate';
 import { CreativeTemplate } from './templates/CreativeTemplate';
-import { ZoomIn, ZoomOut, Maximize2, RotateCcw, Printer, FileText } from 'lucide-react';
+import { TechnicalTemplate } from './templates/TechnicalTemplate';
+import { ExecutiveProTemplate } from './templates/ExecutiveProTemplate';
+import { InfographicTemplate } from './templates/InfographicTemplate';
+import { EditorialTemplate } from './templates/EditorialTemplate';
+import { BoldHeadlineTemplate } from './templates/BoldHeadlineTemplate';
+import { TimelineTemplate } from './templates/TimelineTemplate';
+import { AcademicTemplate } from './templates/AcademicTemplate';
+import { StartupTemplate } from './templates/StartupTemplate';
+import { ZoomIn, ZoomOut, RotateCcw, Printer, FileText } from 'lucide-react';
 
 interface Props {
   data: ResumeData;
@@ -32,6 +40,22 @@ export const ResumePreview: React.FC<Props> = ({ data, onPrint }) => {
         return <CompactTemplate data={data} />;
       case 'creative':
         return <CreativeTemplate data={data} />;
+      case 'technical':
+        return <TechnicalTemplate data={data} />;
+      case 'executive-pro':
+        return <ExecutiveProTemplate data={data} />;
+      case 'infographic':
+        return <InfographicTemplate data={data} />;
+      case 'editorial':
+        return <EditorialTemplate data={data} />;
+      case 'bold-headline':
+        return <BoldHeadlineTemplate data={data} />;
+      case 'timeline':
+        return <TimelineTemplate data={data} />;
+      case 'academic':
+        return <AcademicTemplate data={data} />;
+      case 'startup':
+        return <StartupTemplate data={data} />;
       default:
         return <MinimalTemplate data={data} />;
     }
@@ -93,17 +117,17 @@ export const ResumePreview: React.FC<Props> = ({ data, onPrint }) => {
       {/* Main Preview Scrollable Area */}
       <div 
         ref={containerRef}
-        className="flex-1 overflow-auto p-6 md:p-10 flex justify-center items-start bg-slate-950/60 custom-scrollbar"
+        className="flex-1 overflow-auto p-6 md:p-10 flex justify-center items-start bg-slate-950/60 custom-scrollbar print:p-0 print:m-0 print:bg-transparent print:overflow-visible"
       >
         <div 
-          className="transition-transform duration-150 origin-top shadow-2xl print:transform-none print:shadow-none"
+          className="transition-transform duration-150 origin-top shadow-2xl print:transform-none print:shadow-none print:w-full print:min-h-0 print:p-0 print:m-0"
           style={{
             transform: `scale(${zoom})`,
             width: '794px', // Standard A4 pixel width at 96 DPI
             minHeight: '1123px', // Standard A4 pixel height at 96 DPI
           }}
         >
-          <div id="printable-resume" className="bg-white rounded-sm text-slate-900 print:rounded-none overflow-hidden border border-slate-300/40">
+          <div id="printable-resume" className="bg-white rounded-sm text-slate-900 print:rounded-none print:border-none overflow-hidden border border-slate-300/40">
             {renderSelectedTemplate()}
           </div>
         </div>

@@ -14,6 +14,11 @@ import { SectionManager } from './components/Editor/SectionManager';
 import { ThemePicker } from './components/Editor/ThemePicker';
 import { LinkedInImportModal } from './components/Modals/LinkedInImportModal';
 import { TemplateSelectionModal } from './components/Modals/TemplateSelectionModal';
+import { AuthModal } from './components/AuthModal';
+import { AuthPage } from './components/AuthPage';
+import { MyResumesModal } from './components/MyResumesModal';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { TemplateId } from './types/resume';
 import { 
   User, 
@@ -42,7 +47,10 @@ type ActiveTab =
   | 'sections' 
   | 'theme';
 
-export function App() {
+function AppContent() {
+  const { user, loading } = useAuth();
+  const [isGuestMode, setIsGuestMode] = useState(false);
+
   const {
     resume,
     updatePersonalInfo,
@@ -60,6 +68,22 @@ export function App() {
   const [mobileView, setMobileView] = useState<'editor' | 'preview'>('editor');
   const [isLinkedInModalOpen, setIsLinkedInModalOpen] = useState(false);
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isCloudModalOpen, setIsCloudModalOpen] = useState(false);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white p-4">
+        <div className="w-12 h-12 rounded-full border-4 border-indigo-500/30 border-t-indigo-500 animate-spin mb-4" />
+        <p className="text-xs font-mono text-slate-400">Loading CraftCV Suite...</p>
+      </div>
+    );
+  }
+
+  // If user is not logged in and hasn't chosen guest mode, show full page Login & Sign Up page
+  if (!user && !isGuestMode) {
+    return <AuthPage onContinueAsGuest={() => setIsGuestMode(true)} />;
+  }
 
   const handlePrint = () => {
     window.print();
@@ -96,6 +120,8 @@ export function App() {
         onImportJSON={importJSON}
         onOpenLinkedInModal={() => setIsLinkedInModalOpen(true)}
         onOpenTemplateModal={() => setIsTemplateModalOpen(true)}
+        onOpenAuthModal={() => setIsAuthModalOpen(true)}
+        onOpenCloudModal={() => setIsCloudModalOpen(true)}
       />
 
       {/* Mobile Toggle Switch (Editor vs Preview) */}
@@ -255,7 +281,29 @@ export function App() {
         currentAccentColor={resume.theme.accentColor}
         onApplyThemeAndPreset={handleApplyThemeAndPreset}
       />
+
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
+
+      <MyResumesModal
+        isOpen={isCloudModalOpen}
+        onClose={() => setIsCloudModalOpen(false)}
+        onSelectResume={(loadedData) => importJSON(loadedData)}
+        currentResumeData={resume}
+      />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <ErrorBoundary>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -84,6 +84,86 @@ export const TEMPLATE_CARDS: {
     previewClass: 'border-b-4 border-purple-500 bg-slate-800/40',
     features: ['Bold Banner Header', 'Skill Badge Pills', 'Modern Typography'],
   },
+  {
+    id: 'technical',
+    title: 'Terminal Tech / Code',
+    badge: 'Developer',
+    description: 'Dark terminal IDE styling with monospaced code blocks, syntax highlight accents, and tech tags.',
+    bestFor: 'Backend & Frontend Engineers, DevOps, Systems Architects',
+    fontDefault: 'inter',
+    previewClass: 'border-l-4 border-emerald-400 bg-slate-900',
+    features: ['IDE Terminal Style', 'Monospace Tech Tags', 'Code Syntax Accents'],
+  },
+  {
+    id: 'executive-pro',
+    title: 'Executive Pro Banner',
+    badge: 'Leadership',
+    description: 'Full-bleed top accent header bar, dual column metric highlights, and gold/navy elegance.',
+    bestFor: 'VPs, Directors, General Managers, Executives',
+    fontDefault: 'playfair',
+    previewClass: 'border-t-4 border-amber-400 bg-slate-800/60',
+    features: ['Full-Bleed Header', 'Golden Accents', 'Executive Timeline'],
+  },
+  {
+    id: 'infographic',
+    title: 'Infographic Visual',
+    badge: 'Data-Driven',
+    description: 'Skill progress bar pills, visual metric callout cards, and dynamic visual badges.',
+    bestFor: 'Data Analysts, Growth Marketers, Product Managers',
+    fontDefault: 'jakarta',
+    previewClass: 'border-r-4 border-cyan-400 bg-slate-800/40',
+    features: ['Skill Progress Bars', 'Metric Highlight Cards', 'Visual Badges'],
+  },
+  {
+    id: 'editorial',
+    title: 'Editorial Magazine',
+    badge: 'Luxury',
+    description: 'High-end magazine/editorial layout with quotes, wide luxury margins, and refined serif typography.',
+    bestFor: 'Writers, Editors, Creative Strategists, PR Leads',
+    fontDefault: 'playfair',
+    previewClass: 'border-l-4 border-rose-400 bg-slate-800/40',
+    features: ['Editorial Quote Blocks', 'Luxury Wide Margins', 'Classical Serif'],
+  },
+  {
+    id: 'bold-headline',
+    title: 'Bold Impact Headline',
+    badge: 'Impact',
+    description: 'Oversized impact header, split section borders, pill tags, and high-contrast headlines.',
+    bestFor: 'Sales Directors, Growth Founders, Marketers',
+    fontDefault: 'outfit',
+    previewClass: 'border-b-4 border-pink-500 bg-slate-800/40',
+    features: ['Oversized Title Header', 'Split Section Grid', 'Pill Tag Highlights'],
+  },
+  {
+    id: 'timeline',
+    title: 'Chronological Timeline',
+    badge: 'Milestone',
+    description: 'Continuous vertical timeline node graph connecting work experience entries with dot milestone badges.',
+    bestFor: 'Project Managers, Career Growth Focus, Tech Leads',
+    fontDefault: 'inter',
+    previewClass: 'border-l-4 border-indigo-400 bg-slate-800/40',
+    features: ['Node Graph Timeline', 'Milestone Dots', 'Floating Header Card'],
+  },
+  {
+    id: 'academic',
+    title: 'Academic Research CV',
+    badge: 'Scholar',
+    description: 'Publication & citation friendly multi-column layout with research grant highlights and formal dividers.',
+    bestFor: 'Professors, PhDs, Medical Researchers, Scientists',
+    fontDefault: 'merriweather',
+    previewClass: 'border-t-4 border-slate-400 bg-slate-800/40',
+    features: ['Research First Order', 'Publication Friendly', 'Formal Academic Dividers'],
+  },
+  {
+    id: 'startup',
+    title: 'Startup Founder',
+    badge: 'Founder',
+    description: 'Neomorphic card grid boxes, product feature highlights, and tech stack tags for startup builders.',
+    bestFor: 'Founders, Co-founders, Product Builders, Tech Leads',
+    fontDefault: 'jakarta',
+    previewClass: 'border-r-4 border-violet-500 bg-slate-800/40',
+    features: ['Startup Card Grid', 'Vision & Mission Box', 'Tech Stack Pills'],
+  },
 ];
 
 export const PRESET_OPTIONS: {
@@ -177,7 +257,7 @@ export const TemplateSelectionModal: React.FC<Props> = ({
           <div>
             <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <Layout className="w-4 h-4 text-indigo-400" />
-              1. Choose Resume Layout Theme (5 Distinct Styles)
+              1. Choose Resume Layout Theme (13 Unique Styles)
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

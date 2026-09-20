@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { ShieldCheck, Download, Upload, FileJson, Sparkles, RotateCcw, FileText, Layout } from 'lucide-react';
+import { ShieldCheck, Download, Upload, FileJson, Sparkles, RotateCcw, FileText, Layout, Cloud, User, LogOut, LogIn } from 'lucide-react';
 import { LinkedInIcon } from './Icons';
 import confetti from 'canvas-confetti';
 import { ResumeData } from '../types/resume';
+import { useAuth } from '../context/AuthContext';
 
 interface Props {
   onPrint: () => void;
@@ -11,6 +12,8 @@ interface Props {
   onImportJSON: (data: ResumeData) => void;
   onOpenLinkedInModal: () => void;
   onOpenTemplateModal: () => void;
+  onOpenAuthModal: () => void;
+  onOpenCloudModal: () => void;
 }
 
 export const Header: React.FC<Props> = ({
@@ -20,7 +23,10 @@ export const Header: React.FC<Props> = ({
   onImportJSON,
   onOpenLinkedInModal,
   onOpenTemplateModal,
+  onOpenAuthModal,
+  onOpenCloudModal,
 }) => {
+  const { user, logout } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDownloadPDF = () => {
@@ -68,24 +74,39 @@ export const Header: React.FC<Props> = ({
               </h1>
               <span className="hidden sm:inline-flex items-center gap-1 bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide">
                 <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                100% Private & Free
+                Backend Powered & Secure
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              Fastest client-side ATS resume builder. Zero server tracking.
+              Fastest ATS resume builder with SQLite cloud storage & JWT Auth.
             </p>
           </div>
         </div>
 
         {/* Header Actions */}
         <div className="flex flex-wrap items-center gap-2">
+          {/* Cloud Storage / Saved Resumes */}
+          <button
+            onClick={() => {
+              if (!user) {
+                onOpenAuthModal();
+              } else {
+                onOpenCloudModal();
+              }
+            }}
+            className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-900/80 to-teal-900/80 hover:from-emerald-800 hover:to-teal-800 text-emerald-200 border border-emerald-700/60 px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md"
+          >
+            <Cloud className="w-4 h-4 text-emerald-300" />
+            <span>{user ? 'My Cloud Resumes' : 'Save to Cloud'}</span>
+          </button>
+
           {/* Template & Theme Choice Button */}
           <button
             onClick={onOpenTemplateModal}
             className="flex items-center gap-1.5 bg-gradient-to-r from-purple-900/90 to-indigo-900/90 hover:from-purple-800 hover:to-indigo-800 text-purple-200 border border-purple-700/60 px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md"
           >
             <Layout className="w-4 h-4 text-purple-300" />
-            <span>Choose Resume Theme</span>
+            <span>Resume Theme</span>
           </button>
 
           {/* Sample Presets Dropdown */}
@@ -172,9 +193,48 @@ export const Header: React.FC<Props> = ({
             <Download className="w-4 h-4" />
             <span>Download PDF</span>
           </button>
+
+          {/* User Auth Profile / Login Button */}
+          {user ? (
+            <div className="relative group ml-1">
+              <button className="flex items-center gap-2 bg-indigo-950/90 border border-indigo-700/70 hover:bg-indigo-900 text-indigo-200 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
+                <div className="w-5 h-5 rounded-full bg-indigo-500 text-white flex items-center justify-center text-[10px] font-bold uppercase">
+                  {user.name ? user.name.charAt(0) : 'U'}
+                </div>
+                <span className="max-w-[100px] truncate">{user.name}</span>
+              </button>
+              <div className="absolute right-0 mt-1 w-48 bg-slate-900 border border-slate-800 rounded-xl shadow-xl py-1 hidden group-hover:block z-50 animate-fade-in">
+                <div className="px-3 py-2 border-b border-slate-800">
+                  <p className="text-xs font-bold text-white truncate">{user.name}</p>
+                  <p className="text-[10px] text-slate-400 truncate">{user.email}</p>
+                </div>
+                <button
+                  onClick={onOpenCloudModal}
+                  className="w-full text-left px-3 py-2 text-xs text-slate-200 hover:bg-slate-800 font-medium transition flex items-center gap-2"
+                >
+                  <Cloud className="w-3.5 h-3.5 text-purple-400" /> My Saved Resumes
+                </button>
+                <button
+                  onClick={logout}
+                  className="w-full text-left px-3 py-2 text-xs text-red-400 hover:bg-slate-800 font-medium transition flex items-center gap-2 border-t border-slate-800 mt-1"
+                >
+                  <LogOut className="w-3.5 h-3.5" /> Sign Out
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={onOpenAuthModal}
+              className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition ml-1"
+            >
+              <LogIn className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Sign In</span>
+            </button>
+          )}
         </div>
       </div>
     </header>
   );
 };
+
 

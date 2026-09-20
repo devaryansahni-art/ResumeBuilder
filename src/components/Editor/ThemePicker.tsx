@@ -31,7 +31,7 @@ export const ThemePicker: React.FC<Props> = ({ theme, onChange, onOpenTemplateMo
     },
     {
       id: 'compact',
-      name: 'Compact Tech',
+      name: 'Compact Single-Page',
       desc: 'High-density grid layout to fit heavy experience into 1 page.',
       badge: 'High-Density',
     },
@@ -40,6 +40,54 @@ export const ThemePicker: React.FC<Props> = ({ theme, onChange, onOpenTemplateMo
       name: 'Creative Banner',
       desc: 'Contemporary header block & matrix grid for creative leads.',
       badge: 'Modern',
+    },
+    {
+      id: 'technical',
+      name: 'Terminal Tech / Code',
+      desc: 'Dark IDE style terminal layout with monospace code accents.',
+      badge: 'Developer',
+    },
+    {
+      id: 'executive-pro',
+      name: 'Executive Pro Banner',
+      desc: 'Full-bleed top accent bar with golden timeline accents.',
+      badge: 'Leadership',
+    },
+    {
+      id: 'infographic',
+      name: 'Infographic Visual',
+      desc: 'Skill progress bar pills and visual metric callouts.',
+      badge: 'Data-Driven',
+    },
+    {
+      id: 'editorial',
+      name: 'Editorial Magazine',
+      desc: 'High-end luxury editorial layout with quotes and serif headers.',
+      badge: 'Luxury',
+    },
+    {
+      id: 'bold-headline',
+      name: 'Bold Impact Headline',
+      desc: 'Oversized title header with split section grid and pill tags.',
+      badge: 'Impact',
+    },
+    {
+      id: 'timeline',
+      name: 'Chronological Timeline',
+      desc: 'Node graph timeline connecting career milestone entries.',
+      badge: 'Milestone',
+    },
+    {
+      id: 'academic',
+      name: 'Academic Research CV',
+      desc: 'Publication & citation friendly multi-column research format.',
+      badge: 'Scholar',
+    },
+    {
+      id: 'startup',
+      name: 'Startup Founder',
+      desc: 'Neomorphic card boxes with tech stack pills and product vision.',
+      badge: 'Founder',
     },
   ];
 
@@ -78,7 +126,7 @@ export const ThemePicker: React.FC<Props> = ({ theme, onChange, onOpenTemplateMo
       <div>
         <label className="block text-xs font-bold text-slate-300 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
           <LayoutGrid className="w-4 h-4 text-indigo-400" />
-          Choose Template Layout (5 Styles)
+          Choose Template Layout (13 Unique Styles)
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {templates.map((tpl) => {

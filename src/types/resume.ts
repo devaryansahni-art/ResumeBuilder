@@ -1,4 +1,17 @@
-export type TemplateId = 'minimal' | 'modern' | 'classic' | 'compact' | 'creative';
+export type TemplateId = 
+  | 'minimal' 
+  | 'modern' 
+  | 'classic' 
+  | 'compact' 
+  | 'creative'
+  | 'technical'
+  | 'executive-pro'
+  | 'infographic'
+  | 'editorial'
+  | 'bold-headline'
+  | 'timeline'
+  | 'academic'
+  | 'startup';
 export type FontFamily = 'inter' | 'merriweather' | 'playfair' | 'outfit' | 'jakarta';
 export type FontSize = 'sm' | 'md' | 'lg';
 export type SpacingSize = 'compact' | 'normal' | 'spacious';

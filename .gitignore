@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Server ignores
+server/node_modules
+server/dist
+server/.env
+server/prisma/*.db
+server/prisma/*.db-journal
+
