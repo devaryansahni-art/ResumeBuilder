@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ShieldCheck, Download, Upload, FileJson, Sparkles, RotateCcw, FileText, Layout, Cloud, User, LogOut, LogIn } from 'lucide-react';
+import { ShieldCheck, Download, Upload, FileJson, Sparkles, RotateCcw, FileText, Layout, Cloud, User, LogOut, LogIn, Target } from 'lucide-react';
 import { LinkedInIcon } from './Icons';
 import confetti from 'canvas-confetti';
 import { ResumeData } from '../types/resume';
@@ -14,6 +14,8 @@ interface Props {
   onOpenTemplateModal: () => void;
   onOpenAuthModal: () => void;
   onOpenCloudModal: () => void;
+  onOpenAtsModal: () => void;
+  atsScore?: number;
 }
 
 export const Header: React.FC<Props> = ({
@@ -25,6 +27,8 @@ export const Header: React.FC<Props> = ({
   onOpenTemplateModal,
   onOpenAuthModal,
   onOpenCloudModal,
+  onOpenAtsModal,
+  atsScore = 85,
 }) => {
   const { user, logout } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -85,6 +89,21 @@ export const Header: React.FC<Props> = ({
 
         {/* Header Actions */}
         <div className="flex flex-wrap items-center gap-2">
+          {/* ATS Score Checker Button */}
+          <button
+            onClick={onOpenAtsModal}
+            className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-950/90 to-emerald-900/90 hover:from-emerald-900 hover:to-emerald-800 text-emerald-200 border border-emerald-700/80 px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md active:scale-95"
+            title="Check Real-Time ATS Resume Score"
+          >
+            <Target className="w-4 h-4 text-emerald-400" />
+            <span>ATS Score</span>
+            <span className={`ml-1 text-[10px] font-extrabold px-1.5 py-0.2 rounded font-mono ${
+              atsScore >= 80 ? 'bg-emerald-500 text-slate-950' : atsScore >= 65 ? 'bg-amber-500 text-slate-950' : 'bg-red-500 text-white'
+            }`}>
+              {atsScore}%
+            </span>
+          </button>
+
           {/* Cloud Storage / Saved Resumes */}
           <button
             onClick={() => {

@@ -13,14 +13,16 @@ import { BoldHeadlineTemplate } from './templates/BoldHeadlineTemplate';
 import { TimelineTemplate } from './templates/TimelineTemplate';
 import { AcademicTemplate } from './templates/AcademicTemplate';
 import { StartupTemplate } from './templates/StartupTemplate';
-import { ZoomIn, ZoomOut, RotateCcw, Printer, FileText } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Printer, FileText, Target } from 'lucide-react';
 
 interface Props {
   data: ResumeData;
   onPrint: () => void;
+  onOpenAtsModal?: () => void;
+  atsScore?: number;
 }
 
-export const ResumePreview: React.FC<Props> = ({ data, onPrint }) => {
+export const ResumePreview: React.FC<Props> = ({ data, onPrint, onOpenAtsModal, atsScore }) => {
   const [zoom, setZoom] = useState<number>(0.9);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -71,6 +73,16 @@ export const ResumePreview: React.FC<Props> = ({ data, onPrint }) => {
           <span className="bg-slate-800 text-indigo-300 text-[10px] px-2 py-0.5 rounded-full font-mono uppercase">
             {data.theme.template}
           </span>
+          {typeof atsScore === 'number' && onOpenAtsModal && (
+            <button
+              onClick={onOpenAtsModal}
+              className="flex items-center gap-1 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-800/80 text-[10px] font-bold font-mono px-2 py-0.5 rounded-full transition active:scale-95"
+              title="Open ATS Score Analyzer"
+            >
+              <Target className="w-3 h-3 text-emerald-400" />
+              <span>ATS {atsScore}%</span>
+            </button>
+          )}
         </div>
 
         {/* Action Controls */}

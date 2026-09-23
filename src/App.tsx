@@ -14,12 +14,14 @@ import { SectionManager } from './components/Editor/SectionManager';
 import { ThemePicker } from './components/Editor/ThemePicker';
 import { LinkedInImportModal } from './components/Modals/LinkedInImportModal';
 import { TemplateSelectionModal } from './components/Modals/TemplateSelectionModal';
+import { AtsCheckerModal } from './components/Modals/AtsCheckerModal';
 import { AuthModal } from './components/AuthModal';
 import { AuthPage } from './components/AuthPage';
 import { MyResumesModal } from './components/MyResumesModal';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { TemplateId } from './types/resume';
+import { calculateAtsScore } from './utils/atsScorer';
 import { 
   User, 
   FileText, 
@@ -70,6 +72,12 @@ function AppContent() {
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCloudModalOpen, setIsCloudModalOpen] = useState(false);
+  const [isAtsModalOpen, setIsAtsModalOpen] = useState(false);
+
+  // Calculate live ATS Score
+  const atsResult = React.useMemo(() => {
+    return calculateAtsScore(resume);
+  }, [resume]);
 
   if (loading) {
     return (
@@ -122,6 +130,8 @@ function AppContent() {
         onOpenTemplateModal={() => setIsTemplateModalOpen(true)}
         onOpenAuthModal={() => setIsAuthModalOpen(true)}
         onOpenCloudModal={() => setIsCloudModalOpen(true)}
+        onOpenAtsModal={() => setIsAtsModalOpen(true)}
+        atsScore={atsResult.totalScore}
       />
 
       {/* Mobile Toggle Switch (Editor vs Preview) */}
@@ -263,11 +273,24 @@ function AppContent() {
             mobileView === 'editor' ? 'hidden lg:block' : 'block'
           }`}
         >
-          <ResumePreview data={resume} onPrint={handlePrint} />
+          <ResumePreview 
+            data={resume} 
+            onPrint={handlePrint} 
+            onOpenAtsModal={() => setIsAtsModalOpen(true)}
+            atsScore={atsResult.totalScore}
+          />
         </div>
       </main>
 
       {/* Modals */}
+      <AtsCheckerModal
+        isOpen={isAtsModalOpen}
+        onClose={() => setIsAtsModalOpen(false)}
+        currentResume={resume}
+        onSelectTab={(tabKey) => setActiveTab(tabKey)}
+        onImportResumeData={(data) => importJSON(data)}
+      />
+
       <LinkedInImportModal
         isOpen={isLinkedInModalOpen}
         onClose={() => setIsLinkedInModalOpen(false)}
