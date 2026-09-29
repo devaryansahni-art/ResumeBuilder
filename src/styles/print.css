@@ -18,21 +18,24 @@
     overflow: visible !important;
   }
 
-  /* Ensure main layout and wrapper elements do NOT hide children in print mode */
+  /* Ensure main layout and wrapper elements do NOT hide or clip children in print mode */
   main, 
   main > div,
   .flex-1,
-  .h-\[calc\(100vh-140px\)\] {
+  div {
     display: block !important;
     visibility: visible !important;
     position: static !important;
     transform: none !important;
     overflow: visible !important;
     height: auto !important;
+    min-height: 0 !important;
     max-height: none !important;
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 
   /* 2. Hide all non-printable interface elements */
@@ -47,15 +50,18 @@
     visibility: hidden !important;
   }
 
-  /* 3. Target printable resume canvas & reset scale transforms */
+  /* 3. Target printable resume canvas - POSITION RELATIVE & UNCLIPPED OVERFLOW FOR MULTI-PAGE PRINTING */
   #printable-resume {
     display: block !important;
     visibility: visible !important;
-    position: absolute !important;
+    position: relative !important;
     left: 0 !important;
     top: 0 !important;
     width: 100% !important;
-    min-height: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
@@ -66,9 +72,12 @@
     print-color-adjust: exact !important;
   }
 
-  /* Force all children inside #printable-resume to be visible with exact colors */
+  /* Force all children inside #printable-resume to be visible with exact colors & unclipped overflow */
+  #printable-resume,
   #printable-resume * {
     visibility: visible !important;
+    overflow: visible !important;
+    max-height: none !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }

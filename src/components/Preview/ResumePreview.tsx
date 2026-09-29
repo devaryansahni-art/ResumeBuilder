@@ -139,7 +139,7 @@ export const ResumePreview: React.FC<Props> = ({ data, onPrint, onOpenAtsModal, 
             minHeight: '1123px', // Standard A4 pixel height at 96 DPI
           }}
         >
-          <div id="printable-resume" className="bg-white rounded-sm text-slate-900 print:rounded-none print:border-none overflow-hidden border border-slate-300/40">
+          <div id="printable-resume" className="bg-white rounded-sm text-slate-900 print:rounded-none print:border-none print:overflow-visible print:h-auto overflow-hidden border border-slate-300/40">
             {renderSelectedTemplate()}
           </div>
         </div>
