@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ResumeData } from '../../types/resume';
 import { calculateAtsScore, AtsImprovement } from '../../utils/atsScorer';
+import { parseUploadedResumeFile } from '../../utils/fileResumeParser';
 import { 
   X, 
   Target, 
@@ -37,6 +38,7 @@ export const AtsCheckerModal: React.FC<Props> = ({
   const [jobDescription, setJobDescription] = useState('');
   const [uploadedResumeData, setUploadedResumeData] = useState<ResumeData | null>(null);
   const [uploadError, setUploadError] = useState('');
+  const [isParsing, setIsParsing] = useState(false);
 
   // Calculate ATS Score dynamically
   const activeResumeToScore = uploadedResumeData || currentResume;
@@ -57,31 +59,26 @@ export const AtsCheckerModal: React.FC<Props> = ({
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (atsResult.totalScore / 100) * circumference;
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setUploadError('');
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const content = event.target?.result as string;
-        const parsed = JSON.parse(content);
-        if (parsed && (parsed.personalInfo || parsed.workExperiences || parsed.sections)) {
-          setUploadedResumeData(parsed as ResumeData);
-          if (onImportResumeData) {
-            onImportResumeData(parsed);
-          }
-          setActiveSubTab('audit');
-        } else {
-          setUploadError('Invalid resume structure in file.');
-        }
-      } catch (err) {
-        setUploadError('Unable to parse file. Please upload a valid CraftCV JSON resume.');
+    setIsParsing(true);
+
+    try {
+      const parsedData = await parseUploadedResumeFile(file);
+      setUploadedResumeData(parsedData);
+      if (onImportResumeData && file.name.endsWith('.json')) {
+        onImportResumeData(parsedData);
       }
-    };
-    reader.readAsText(file);
-    e.target.value = '';
+      setActiveSubTab('audit');
+    } catch (err: any) {
+      setUploadError(err.message || 'Unable to parse file. Please select a valid PDF, JSON, or TXT resume.');
+    } finally {
+      setIsParsing(false);
+      e.target.value = '';
+    }
   };
 
   return (
@@ -401,18 +398,18 @@ export const AtsCheckerModal: React.FC<Props> = ({
                 </div>
 
                 <h3 className="text-sm font-bold text-white mb-1">
-                  Upload Resume JSON to Audit
+                  Upload Resume to Audit (PDF, JSON, TXT)
                 </h3>
                 <p className="text-xs text-slate-400 mb-4">
-                  Select your saved CraftCV JSON resume file to instantly inspect its ATS Score.
+                  Select your PDF, JSON, or TXT resume file to instantly inspect its ATS Score.
                 </p>
 
                 <label className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer shadow-lg shadow-indigo-600/30 transition active:scale-95">
                   <FileCode2 className="w-4 h-4" />
-                  <span>Choose File...</span>
+                  <span>{isParsing ? 'Extracting Resume Data...' : 'Choose File (PDF, JSON, TXT)...'}</span>
                   <input
                     type="file"
-                    accept=".json"
+                    accept=".pdf,.json,.txt,.doc,.docx,application/pdf,application/json,text/plain"
                     onChange={handleFileUpload}
                     className="hidden"
                   />
