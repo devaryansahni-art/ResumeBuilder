@@ -33,24 +33,37 @@ export interface AtsScoreResult {
   keywordAnalysis?: KeywordAnalysis;
 }
 
-// Power Action Verbs recognized by major ATS systems
+// Power Action Verbs recognized by major ATS systems (Workday, Greenhouse, Taleo, Lever)
 const ACTION_VERBS = new Set([
-  'achieved', 'administered', 'analyzed', 'architected', 'automated', 'built',
-  'collaborated', 'created', 'decreased', 'delivered', 'designed', 'developed',
-  'directed', 'drove', 'engineered', 'enhanced', 'established', 'expanded',
-  'formulated', 'generated', 'guided', 'implemented', 'improved', 'increased',
-  'initiated', 'innovated', 'instituted', 'integrated', 'launched', 'led',
-  'managed', 'maximized', 'migrated', 'minimized', 'modernized', 'negotiated',
-  'orchestrated', 'optimized', 'overhauled', 'pioneered', 'produced', 'reduced',
-  'refactored', 'restructured', 'revamped', 'scaled', 'spearheaded', 'streamlined',
-  'transformed', 'upgraded'
+  'accelerated', 'achieved', 'acquired', 'adapted', 'administered', 'advised', 'advocated',
+  'aligned', 'amplified', 'analyzed', 'appointed', 'architected', 'assembled', 'assessed',
+  'audited', 'automated', 'authored', 'built', 'calculated', 'championed', 'clarified',
+  'coached', 'collaborated', 'communicated', 'conceptualized', 'conducted', 'consolidated',
+  'constructed', 'consulted', 'coordinating', 'coordinated', 'created', 'cultivated',
+  'decreased', 'delegated', 'delivered', 'deployed', 'designed', 'developed', 'devised',
+  'diagnosed', 'directed', 'distributed', 'documented', 'drove', 'eliminated', 'engineered',
+  'enhanced', 'established', 'estimated', 'evaluated', 'examined', 'executed', 'expanded',
+  'expedited', 'facilitated', 'forecasted', 'formulated', 'fostered', 'founded', 'generated',
+  'governed', 'guided', 'headed', 'identified', 'implemented', 'improved', 'increased',
+  'influenced', 'initiated', 'innovated', 'inspected', 'instituted', 'integrated', 'interpreted',
+  'introduced', 'invented', 'investigated', 'launched', 'led', 'leveraged', 'maintained',
+  'managed', 'mapped', 'maximized', 'mediated', 'mentored', 'merged', 'migrated', 'minimized',
+  'modeled', 'modernized', 'monitored', 'navigated', 'negotiated', 'optimized', 'orchestrated',
+  'organized', 'originated', 'overhauled', 'oversaw', 'partnered', 'pioneered', 'planned',
+  'prepared', 'presented', 'produced', 'programmed', 'promoted', 'published', 'quantified',
+  'reengineered', 'refactored', 'reformatted', 'reorganized', 'resolved', 'restructured',
+  'revamped', 'reviewed', 'revitalized', 'scaled', 'scheduled', 'secured', 'selected',
+  'simplified', 'spearheaded', 'standardized', 'steered', 'strategized', 'streamlined',
+  'structured', 'supervised', 'surpassed', 'synthesized', 'systematized', 'targeted',
+  'trained', 'transformed', 'translated', 'upgraded', 'validated', 'verified'
 ]);
 
-// Common technical & industry keywords to extract from job descriptions
+// Common stop words to exclude during job description keyword extraction
 const COMMON_STOP_WORDS = new Set([
   'and', 'the', 'for', 'with', 'you', 'that', 'this', 'have', 'will', 'from',
   'your', 'are', 'work', 'team', 'experience', 'ability', 'knowledge', 'strong',
-  'about', 'must', 'should', 'skills', 'role', 'looking', 'years', 'working'
+  'about', 'must', 'should', 'skills', 'role', 'looking', 'years', 'working',
+  'help', 'need', 'great', 'good', 'well', 'etc', 'also', 'such', 'into', 'over'
 ]);
 
 /**
